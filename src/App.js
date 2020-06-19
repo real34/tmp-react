@@ -3,6 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import { FormattedDate } from "react-intl";
 
+const BetterFormattedDate = ({ value, ...props }) => {
+  // https://stackoverflow.com/a/5646753
+  const cleanedValue = value && value.replace(/-/g, "/");
+  return <FormattedDate value={cleanedValue} {...props} />;
+};
+
 function App() {
   return (
     <div className="App">
@@ -11,10 +17,10 @@ function App() {
 
         <ul>
           <li>
-            <FormattedDate />
+            <BetterFormattedDate />
           </li>
           <li>
-            <FormattedDate value="2020-06-19 12:11:14" />
+            <BetterFormattedDate value="2020-06-19 12:11:14" />
           </li>
         </ul>
       </header>
